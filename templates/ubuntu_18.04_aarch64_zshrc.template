@@ -1,0 +1,60 @@
+#!/bin/bash #used for syntax highlighting; delete;
+
+# Raspi .zshrc
+# Add the following lines to your generated .zshrc
+# ------------------------------------
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(zsh-autosuggestions git copyfile docker docker-compose extract pip python sublime colored-man-pages)
+source $ZSH/oh-my-zsh.sh
+
+# ------------------------------------ User configuration
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# set Default User
+DEFAULT_USER=`whoami`
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# define Editor
+export EDITOR='vim'
+# VIM
+export LC_ALL=en_US.UTF-8
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+
+alias sc='source ~/.zshrc'
+alias zshconfig='$EDITOR ~/.zshrc'
+alias ohmyzshconfig='$EDITOR ~/.oh-my-zsh'
+
+alias lisa='ls -lisa'
+alias lspath='ls -lrt -d -1 $PWD/*'
+alias c='clear'
+alias fsize='du -sh * | sort -n'
+alias dfsize='df -H'
+alias rebootnow='sudo shutdown --reboot now'
+alias shutdownnow='sudo shutdown now'
+alias treel='tree -l'
+
+# ----------------------------------- Functions
+[ -f ~/.zshfunc.zsh ] && source ~/.zshfunc.zsh

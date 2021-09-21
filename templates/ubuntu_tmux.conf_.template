@@ -1,0 +1,25 @@
+# split panes using | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+# Enable mouse mode (tmux 2.1 and above)
+set -g mouse on
+
+######### DESIGN CHANGES ##########
+
+# use 256 term for pretty colors
+set -g default-terminal "screen-256color"
+
+# color status bar
+set -g status-style fg=white,bg=colour235
+
+# highlight current window
+set-window-option -g window-status-current-style fg=black,bg=green
+
+# set color of active pane
+set -g pane-border-style fg=colour235,bg=black
+set -g pane-active-border-style fg=green,bg=black

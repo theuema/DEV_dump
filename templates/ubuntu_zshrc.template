@@ -1,0 +1,236 @@
+#!/bin/bash #used for syntax highlighting; delete;
+
+# Ubuntu .zshrc
+# Add the following lines to your generated .zshrc
+# ------------------------------------
+
+# Set autoload path
+fpath=(~/zsh "${fpath[@]}")
+
+# Add obvious bin folder to Path (seen with virtualenv and wrapper installing to this location!)
+#export PATH="/home/digital/.local/bin:$PATH"
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# set Default User
+DEFAULT_USER=`whoami`
+
+# Linuxbrew stuff to PATH etc.
+#eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(zsh-autosuggestions git copyfile docker docker-compose extract pip python sublime colored-man-pages)
+
+source $ZSH/oh-my-zsh.sh
+
+# ----------------------------------- User Configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# define Editor
+export EDITOR='vim'
+# VIM
+export LC_ALL=en_US.UTF-8
+
+# --- FZF
+# source ~/.fzf/shell/key-bindings.zsh # not needed? see automatic source at the bottom
+# source ~/.fzf/shell/completion.zsh   # not needed? see automatic source at the bottom
+
+# FZF does not use ripgrep by default, so we need to tell FZF to use ripgrep with FZF_DEFAULT_COMMAND variable.
+# Pay attention to -m in FZF_DEFAULT_OPTS. This option allows us to make multiple selections (with Tab or Shift-Tab).
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND="rg --files"
+  export FZF_DEFAULT_OPTS="
+  --multi
+  --border
+  --height=60%
+  --layout=reverse
+  --info inline
+  --prompt='∼ '
+  --ansi
+  --color='pointer:032,marker:010,bg+:237,gutter:008'
+  --bind 'ctrl-a:select-all'
+  --preview-window=:hidden
+  --bind '?:toggle-preview'
+  --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+  --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
+  "
+fi
+
+# to cd (alt-c) into the selected directory without typing cd on MacOS
+#bindkey "ç" fzf-cd-widget
+
+# autoload custom commands where fzf is used
+# if there is a problem with autoloaded functions, after edit, one needs to e.g.: "unfunction bcip" before autoload
+# freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
+# unfunction utils bashcheat tmuxcheat vimcheat virtualenvcheat 
+autoload -Uz kp bi bu ci cu utils bashcheat tmuxcheat vimcheat virtualenvcheat fzfcheat
+
+# Virtualenv
+#plugins=(virtualenv)
+
+# --- VirtualEnvWrapper
+# export WORKON_HOME=$HOME/.virtualenvs   # Optional
+# export PROJECT_HOME=$HOME/projects      # Optional
+# export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+# export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)
+# source /home/digital/.local/bin/virtualenvwrapper.sh
+
+# --- CUDA
+# export PATH=/usr/local/cuda-11.1/bin${PATH:+:${PATH}}
+# export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+
+# ----------------------------------- ALIASES
+
+## Homebrew / Linuxbrew / Cask
+alias brews='brew list'
+alias casks='brew cask list'
+alias cask='brew cask'
+
+# Confis / Editor
+alias zshconfig='$EDITOR ~/.zshrc'
+alias ohmyzshconfig='$EDITOR ~/.oh-my-zsh'
+alias tmuxconfig='$EDITOR ~/.tmux.conf'
+alias vimconfig='$EDITOR ~/.vimrc'
+alias utilsconfig='\$EDITOR ~/zsh/utils'
+alias shortcutsconfig='\$EDITOR ~/zsh/shortcuts'
+alias sc='source ~/.zshrc'
+#alias vim='/home/linuxbrew/.linuxbrew/Cellar/vim/8.2.2625/bin/vim'
+
+# Version Control
+alias gadd='git add .'
+alias gcommit='git commit -m $1'
+alias gdiff='git diff'
+alias gdifft='git difftool'
+alias gmerget='git mergetool'
+alias gpush='git push $1 $2'
+alias gcheck='git checkout $1 $2'
+alias gpull='git pull $1 $2'
+alias grebase='git rebase $1 $2'
+alias gremote='git remote -v'
+alias gremotechangeurl='git remote set-url origin $1'
+alias gfetch='git fetch'
+alias gstatus='git status'
+alias gguser='git config --global user.name $1'
+alias ggemail='git config --global user.email $1'
+alias glog='git log --pretty=oneline'
+alias gtree='git ls-tree -r --name-only master'
+alias svnco='svn co $1'
+alias svncouser='svn co $1 --username $2'
+alias svncodir='svn co $1 $2'
+alias svndiffrev='svn diff -r $1:HEAD'
+alias svndiffrevsum='svn diff -r $1:HEAD --summarize'
+alias svnrev='svn info --show-item revision'
+alias svnblamefile='svn blame $1'
+
+# Tools
+alias pdfgrepf='pdfgrep -HiR $1 .'
+alias targz='tar -xzvf $1'
+alias tartar='tar xvf $1'
+alias merge001inplace='cat $1.* > $1'
+alias merge001='cat $1.* > $2'
+alias markdownless='pandoc -t plain $1 | less'
+alias markdownw3m='pandoc $1 | w3m -T text/html'
+alias latexdiffit='latexdiff $1 $2 > $3'
+alias -g Z='| fzf'
+alias treelvl='tree -L $1'
+
+# Standard Command Line
+alias lisa='ls -lisa'
+alias lspath='ls -lrt -d -1 $PWD/*'
+alias lisagrep='ls -lisa | grep $1'
+alias c='clear'
+alias fsizenr='du -sh "\*" | sort -n | head -n $1'
+alias fsize='du -sh * | sort -n'
+alias fsizef='du -sh $1'
+alias dfsize='df -H'
+alias findin='find $1 -name $2'
+alias printfstructure='find $1 -maxdepth $2 -type d'
+alias grepinfilesearch='grep -R --color=auto "$1" .'
+alias mkdircreateparent='mkdir -p $1'
+alias chmodx='chmod +x $1'
+alias rebootnow='sudo shutdown --reboot now'
+alias shutdownnow='sudo shutdown now'
+# batch renaming
+# use F2 tool which has a dry and execute run for more security when renaming
+alias stripoutprefix='for f in *; do mv "$f" "${f#$1}"; done'
+alias stripout='for f in *; do mv "$f" "${f/$1/}"; done'
+alias addprefix_nowhitesp='for f in *; do mv $f $1$f; done'
+alias allto_lowercase='for f in *; do mv "$f" "$f.tmp"; mv "$f.tmp" "`echo $f | tr "[:upper:]" "[:lower:]"`"; done'
+
+# TMUX
+alias tmuxbase='tmux attach -t base || tmux new -s base'
+alias tmuxremote='tmux attach -t remote || tmux new -s remote'
+alias tmuxkill='tmux kill-session -t $1'
+alias tmuxkillall='tmux kill-session -a'
+alias tmuxnew='tmux new -s $1'
+alias tmuxlist= 'tmux ls'
+alias tmuxinfo='tmux info'
+
+# Remote
+alias uploadremote='rsync -e ssh -avz $1 $2\@$3:/home/$4/Downloads'
+alias downloadremote='rsync -e ssh -avz $1@$2:$3 /Users/theuema/Downloads/_remote'
+alias mountremote='sshfs -o follow_symlinks $1@$2:/home/$3/ ~/Mountpoints/remote'
+alias mountsamba='mount -t smbfs //mario.theuermann@$1/'
+alias umountremote='umount -f ~/Mountpoints/$1'
+alias sshto'ssh $1@$2'
+
+# Joanneum
+alias jetsondev='ssh joanneum@GEOSMC-TX2-DEV'
+alias jetsondrone='ssh nvidia@GEOSMC-TX2-XIMEA'
+
+alias uploadximea='rsync -e ssh -avz $1 nvidia@GEOSMC-TX2-XIMEA:/home/nvidia/Downloads'
+alias uploaddev='rsync -e ssh -avz $1 joanneum@GEOSMC-TX2-DEV:/home/joanneum/Downloads'
+alias mountximeahome='sshfs -o follow_symlinks nvidia@GEOSMC-TX2-XIMEA:/home/nvidia ~/Mountpoints/ximea'
+alias mountdevhome='sshfs -o follow_symlinks joanneum@GEOSMC-TX2-DEV:/home/joanneum ~/Mountpoints/dev'
+alias mountmukisano='mount -t smbfs //mario.theuermann@jr1.local/shares/DIG_FER-saved/GeoSMC/Projects/2020_MUKISANO ~/Mountpoints/mukisano'
+alias mountsambafs='mount -t smbfs //mario.theuermann@$1 ~/Mountpoints/samba'
+
+## Other
+alias python3env="python3 -m venv $1"
+alias Tx2USBsshconn="ssh nvidia@192.168.55.1"
+
+# ----------------------------------- Functions
+#[ -f ~/.zshfunc.zsh ] && source ~/.zshfunc.zsh
+
+# ----------------------------------- Automatic stuff
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# export PROJ_ROOT="/opt/proj/7.0.0"
+# export PATH="/opt/GDAL/2.4.1/bin:$PATH"
+# export LD_LIBRARY_PATH="/opt/GDAL/2.4.1/lib:$LD_LIBRARY_PATH"
+# export GDAL_DATA="/opt/GDAL/2.4.1/share/gdal"
+# export GDAL_ROOT="/opt/GDAL/2.4.1"
+# export PYTHONPATH="/opt/GDAL/2.4.1/lib/python3.6/site-packages:$PYTHONPATH"
