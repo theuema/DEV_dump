@@ -55,15 +55,15 @@ Plug 'ludovicchabant/vim-gutentags'
 " https://github.com/ycm-core/YouCompleteMe#c-family-semantic-completion
 " If using CMake, add -DCMAKE_EXPORT_COMPILE_COMMANDS=ON when configuring (or add set( CMAKE_EXPORT_COMPILE_COMMA    NDS ON ) to CMakeLists.txt) and copy or symlink the generated database to the root of your project.
 
-function! BuildYCM(info)
+"function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --clangd-completer
-  endif
-endfunction
+  "if a:info.status == 'installed' || a:info.force
+    "!./install.py --clangd-completer
+  "endif
+"endfunction
 " add folowing completers when needed
 " --go-completer --rust-completer --java-completer 
 

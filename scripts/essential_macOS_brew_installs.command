@@ -1,44 +1,56 @@
 #!/bin/bash
 
+# Pre-requirements
+# Install command line tools and rosetta
+# xcode-select --install
+# if [ "$(arch)" = "arm64" ]; then
+#     /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+
+# Install homebrew
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Tap casks
+# brew tap homebrew/cask
+
+# Set up terminal workflow
+# brew install zsh zsh-completions zsh-autosuggestions
+
 install_essentials(){
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   # Terminal & Tools
-  brew install ghostscript zsh zsh-completions zsh-autosuggestions #neofetch 
-  brew install rename rsync ntfs-3g mas gotop pdfgrep yadm openssl wget exiftool rom-tools 
-  #rom-tools for creating CHDs from CD-Roms PSX emulator 
-  #htop #curl already comes with macOS
+  #brew install neofetch
+  brew install rename rsync ntfs-3g mas gotop pdfgrep yadm openssl wget exiftool rom-tools #ghostscript #rom-tools for creating CHDs from CD-Roms PSX emulator 
+  #brew install htop curl #htop -gotop alternative #curl -to use newer curl version from brew
 
   # Dev
-  brew install bat tree cmake go ctags meld #java # fzf installed via vim to ~/.fzf
-  sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-  #$(brew --prefix)/opt/fzf/install # install useful fzf key bindings and fuzzy completion for brew installed fzf
-  brew install tmux git-flow perl latexdiff #node for npm webdev or youcompleteme plugin then #brew install sass/sass/sass
+  brew install bat tree go meld #cmake #ctags #java #fzf -installed via vim to ~/.fzf
+  # sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+  #$(brew --prefix)/opt/fzf/install #install useful fzf key bindings and fuzzy completion for brew installed fzf
+  brew install tmux git-flow perl latexdiff #node -for npm webdev or youcompleteme plugin then: brew install sass/sass/sass
   #npm i @ayoisaiah/f2 -g #renaming tool (https://github.com/ayoisaiah/f2) if node is installed
   brew install --cask iterm2 vim ripgrep sublime-text docker mactex-no-gui skim zotero #mactex #java8 #sourcetree
   # brew install virtualbox virtualbox-extension-pack qemu
 
   # OS additions
-  brew install --cask rectangle aerial itsycal cheatsheet
-  # brew install --cask xquartz # Enable X11 Forwarding on Mac OS X (ssh -X host)
+  brew install --cask rectangle cheatsheet #itsycal -use widget in macOS Monterey #aerial -screensaver 
+  brew install --cask xquartz # Enable X11 Forwarding on macOS (ssh -Y host)
 
   # Findericons & Hammerspoon
-  brew install fileicon
-  brew install --cask hammerspoon openinterminal-lite openineditor-lite
+  # brew install fileicon
+  # brew install --cask hammerspoon openinterminal-lite openineditor-lite
 
   # General & Applications
-  brew install --cask spotify google-backup-and-sync cyberduck raspberry-pi-imager #dropbox discord spotmenu
-  brew install --cask osxfuse android-file-transfer android-platform-tools steam calibre vlc #eqmac has bug in catalina https://github.com/nodeful/eqMac2/issues/172
-  #brew install --cask microsoft-remote-desktop # vnc-viewer (usually MacOS vnc tool should work: Spotlight "vnc.//")
-  #brew install openconnect # Cisco Anyconnect alternative client
+  brew install --cask spotify google-drive cyberduck raspberry-pi-imager #dropbox discord spotmenu
+  brew install --cask osxfuse android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
+  brew install --cask microsoft-remote-desktop #vnc-viewer -usually macOS vnc tool works: Spotlight "vnc.//")
+  brew install openconnect # Cisco anyconnect alternative CLI client
 
   # Privacy & Messaging
-  brew install --cask gpg-suite tunnelblick protonvpn protonmail-bridge thunderbird firefox tor-browser #bitwarden #gnupg not needed with gpg-suite
+  brew install --cask gpg-suite protonvpn protonmail-bridge thunderbird firefox tor-browser #tunnelblick #bitwarden -better install directly
   brew install --cask element signal
-  brew install joplin
+  brew install --cask joplin
   
-  # Work
+  # Remote meetings
   brew install --cask gotomeeting webex-meetings
-  defaults write com.apple.finder AppleShowAllFiles YES
 }
 
 install_additionals(){
@@ -49,50 +61,62 @@ install_additionals(){
 }
 
 echo "\
-MacEssentials Install Script
+MacEssentials install script
 
-macOS Command Line Tools
-Homebrew Package Manager
+--- ! Pre-requirements !
 
---- Terminal & Tools
-brew: ghostscript zsh zsh-completions zsh-autosuggestions #neofetch 
-brew: rename rsync ntfs-3g mas gotop pdfgrep yadm openssl wget exiftool #htop #curl already comes with macOS
+# Install command line tools and rosetta
+# xcode-select --install
+# if [ "$(arch)" = "arm64" ]; then
+#     /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
---- Dev
-brew: bat tree cmake go ctags #java # fzf installed via vim to ~/.fzf
-brew: tmux git-flow perl latexdiff #node for npm webdev #brew install sass/sass/sass
-cask: iterm2 vim ripgrep sublime-text docker mactex-no-gui skim zotero #mactex #java8 #sourcetree
-additional casks:  # virtualbox virtualbox-extension-pack qemu
-                   # openconnect # Cisco Anyconnect alternative client
+# Install homebrew
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
---- OS additions
-cask: rectangle aerial itsycal cheatsheet
-additional casks: # xquartz # Enable X11 Forwarding on Mac OS X (ssh -X host)
+# Tap casks
+# brew tap homebrew/cask
 
---- Findericons & Hammerspoon
-brew: fileicon
-cask: hammerspoon openinterminal-lite openineditor-lite
+# Set up terminal workflow
+# brew install zsh zsh-completions zsh-autosuggestions
 
---- General & Applications
-cask: spotify google-backup-and-sync cyberduck raspberry-pi-imager #dropbox discord spotmenu
-cask: osxfuse android-file-transfer steam calibre vlc #eqmac has bug in catalina https://github.com/nodeful/eqMac2/issues/172
-additional casks: # microsoft-remote-desktop # vnc-viewer (usually MacOS vnc tool should work: Spotlight "vnc.//")
-                  # openconnect # Cisco Anyconnect alternative client
+--- ! Essential Installations !
 
---- Privacy & Messaging
-cask: gpg-suite tunnelblick protonvpn protonmail-bridge thunderbird firefox tor-browser #bitwarden #gnupg not needed with gpg-suite
-cask: element signal
-brew: joplin
+# Terminal & Tools
+brew install zsh zsh-completions zsh-autosuggestions #neofetch #ghostscript
+brew install rename rsync ntfs-3g mas gotop pdfgrep yadm openssl wget exiftool rom-tools #rom-tools for creating CHDs from CD-Roms PSX emulator 
+#htop -gotop alternative #curl -to use newer curl version from brew
 
---- Work
-cask: gotomeeting webex-meetings
+# Dev
+brew install bat tree go meld #cmake #ctags #java #fzf -installed via vim to ~/.fzf
+# sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+#$(brew --prefix)/opt/fzf/install #install useful fzf key bindings and fuzzy completion for brew installed fzf
+brew install tmux git-flow perl latexdiff #node -for npm webdev or youcompleteme plugin then: brew install sass/sass/sass
+#npm i @ayoisaiah/f2 -g #renaming tool (https://github.com/ayoisaiah/f2) if node is installed
+brew install --cask iterm2 vim ripgrep sublime-text docker mactex-no-gui skim zotero #mactex #java8 #sourcetree
+# brew install virtualbox virtualbox-extension-pack qemu
 
-Directly show hidden files in Finder: defaults write com.apple.finder AppleShowAllFiles YES
-JR@DIG8216
+# OS additions
+brew install --cask rectangle cheatsheet #itsycal -use widget in macOS Monterey #aerial -screensaver 
+brew install --cask xquartz # Enable X11 Forwarding on macOS (ssh -Y host)
+
+# Findericons & Hammerspoon
+# brew install fileicon
+# brew install --cask hammerspoon openinterminal-lite openineditor-lite
+
+# General & Applications
+brew install --cask spotify google-drive cyberduck raspberry-pi-imager #dropbox discord spotmenu
+brew install --cask osxfuse android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
+brew install --cask microsoft-remote-desktop #vnc-viewer -usually macOS vnc tool works: Spotlight "vnc.//")
+brew install openconnect # Cisco anyconnect alternative CLI client
+
+# Privacy & Messaging
+brew install --cask gpg-suite protonvpn protonmail-bridge thunderbird firefox tor-browser #tunnelblick #bitwarden -better install directly
+brew install --cask element signal
+brew install --cask joplin
+
+# Remote meetings
+brew install --cask gotomeeting webex-meetings
 "
-
-# to install command line tools
-xcode-select --install
 
 answer=""
 while [[ "$answer" != "n" && "$answer" != "y" && "$answer" != "N" && "$answer" != "Y" ]]; do
@@ -104,19 +128,20 @@ while [[ "$answer" != "n" && "$answer" != "y" && "$answer" != "N" && "$answer" !
     echo "\
     Installation finished. Consider following information:
 
-    You may now want to switch to iterm2 & install oh-my-zsh.
-    - For you current .zshrc configuration you need:
+    Switch to iTerm2 & install oh-my-zsh.
+    - recommended iTerm2 theme:
     - > git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-    Dotfile installation with yadm is prefered after installing oh-my-zsh.
-    - Dotfile info: fzf gets installed via vim.plug into ~/ (this is essential for a lot of dotfiles from yadm).
-    - Dotfile info: vim.plug is automatically installed when starting vim via .vimrc.
+    Dotfile installation with yadm is prefered after installing oh-my-zsh
+    Dotfiles: git@github.com:theuema/dotfiles.git
+    - Dotfile info: fzf is installed via vim.plug to $HOME
+    - Dotfile info: vim.plug is automatically installed when starting vim with .vimrc
 
-    Don't forget to install virtualenvwrapper with pip3: $pip3 install virtualenvwrapper.
+    Install virtualenvwrapper if needed ($pip3 install virtualenvwrapper)
 
-    MacOS: Adjust MissionContol shortcuts in settings. Therefore see settings_macOS.md file.
+    macOS settings: Adjust MissionContol shortcuts in settings (see Joplin)
 
-    Don't forget to set up ntfs-3g correctly: https://github.com/osxfuse/osxfuse/wiki/NTFS-3G#auto-mount-ntfs-volumes-in-read-write-mode-on-macos-1015-catalina
+    If ntfs is needed: set up _ntfs-3g_ correctly: https://github.com/osxfuse/osxfuse/wiki/NTFS-3G#auto-mount-ntfs-volumes-in-read-write-mode-on-macos-1015-catalina
 
     Done.
   "
@@ -158,4 +183,7 @@ while [[ "$answer" != "n" && "$answer" != "y" && "$answer" != "N" && "$answer" !
   fi
 done
 
-echo "Finished."
+# Additional OS settings.
+defaults write com.apple.finder AppleShowAllFiles YES
+
+echo "Installations finished."
