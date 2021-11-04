@@ -18,16 +18,17 @@
 install_essentials(){
   # Terminal & Tools
   #brew install neofetch
-  brew install rename rsync ntfs-3g mas gotop pdfgrep yadm openssl wget exiftool rom-tools #ghostscript #rom-tools for creating CHDs from CD-Roms PSX emulator 
+  brew install rename rsync mas gotop pdfgrep yadm openssl wget exiftool rom-tools #ntfs-3g #ghostscript #rom-tools for creating CHDs from CD-Roms PSX emulator 
   #brew install htop curl #htop -gotop alternative #curl -to use newer curl version from brew
 
   # Dev
-  brew install bat tree go meld #cmake #ctags #java #fzf -installed via vim to ~/.fzf
+  brew install bat vim tree go meld #cmake #ctags #java #fzf -installed via vim to ~/.fzf
+  brew install --cask macfuse
+  brew install gromgit/fuse/sshfs-mac #brew install sshfs replacement due to macfuse not being open source anymore; see https://docs.brew.sh/Interesting-Taps-and-Forks  
   # sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-  #$(brew --prefix)/opt/fzf/install #install useful fzf key bindings and fuzzy completion for brew installed fzf
   brew install tmux git-flow perl latexdiff #node -for npm webdev or youcompleteme plugin then: brew install sass/sass/sass
   #npm i @ayoisaiah/f2 -g #renaming tool (https://github.com/ayoisaiah/f2) if node is installed
-  brew install --cask iterm2 vim ripgrep sublime-text docker mactex-no-gui skim zotero #mactex #java8 #sourcetree
+  brew install --cask iterm2 ripgrep docker sublime-text visual-studio-code mactex-no-gui skim zotero #mactex #java8 #sourcetree
   # brew install virtualbox virtualbox-extension-pack qemu
 
   # OS additions
@@ -40,7 +41,7 @@ install_essentials(){
 
   # General & Applications
   brew install --cask spotify google-drive cyberduck raspberry-pi-imager #dropbox discord spotmenu
-  brew install --cask osxfuse android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
+  brew install --cask android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
   brew install --cask microsoft-remote-desktop #vnc-viewer -usually macOS vnc tool works: Spotlight "vnc.//")
   brew install openconnect # Cisco anyconnect alternative CLI client
 
@@ -161,8 +162,7 @@ git clone git@github.com:theuema/Uebersicht_Widgets.git $HOME/Library/Applicatio
 answer=""
 while [[ "$answer" != "n" && "$answer" != "y" && "$answer" != "N" && "$answer" != "Y" ]]; do
   echo "\
-  Before you proceed, be sure that the .ssh folder is in place and dotfiles are synched!
-  Also open the Spotify Application once.
+  Before you proceed open the spotify application once.
   Do you also want to install additionals? (y/n)?
   "
   read answer
@@ -186,4 +186,4 @@ done
 # Additional OS settings.
 defaults write com.apple.finder AppleShowAllFiles YES
 
-echo "Installations finished."
+echo "Essentials installation finished."
