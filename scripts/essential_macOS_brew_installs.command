@@ -16,47 +16,50 @@
 # brew install zsh zsh-completions zsh-autosuggestions
 
 install_essentials(){
+   # OS additions
+  brew install rectangle cheatsheet #itsycal -use widget in macOS Monterey #aerial -screensaver 
+  brew install xquartz # Enable X11 Forwarding on macOS (ssh -Y host)
+
   # Terminal & Tools
-  #brew install neofetch
-  brew install rename rsync mas gotop pdfgrep yadm openssl wget exiftool rom-tools #ntfs-3g #ghostscript #rom-tools for creating CHDs from CD-Roms PSX emulator 
-  #brew install htop curl #htop -gotop alternative #curl -to use newer curl version from brew
+  brew install rename rsync mas pdfgrep yadm openssl wget exiftool rom-tools gotop #ntfs-3g #ghostscript #rom-tools for creating CHDs from CD-Roms PSX emulator 
+  #brew install neofetch htop curl
+  brew install openconnect # Cisco anyconnect alternative CLI VPN client
 
   # Dev
-  brew install bat vim tree go meld #cmake #ctags #java #fzf -installed via vim to ~/.fzf
-  brew install --cask macfuse
+  brew install bat tree go meld ripgrep vim #cmake #ctags #java #fzf -installed via vim to ~/.fzf
+  brew install macfuse
   brew install gromgit/fuse/sshfs-mac #brew install sshfs replacement due to macfuse not being open source anymore; see https://docs.brew.sh/Interesting-Taps-and-Forks  
   # sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-  brew install tmux git-flow perl latexdiff #node -for npm webdev or youcompleteme plugin then: brew install sass/sass/sass
+  brew install tmux git-flow perl latexdiff #sourcetree #node -for npm webdev or youcompleteme plugin then: brew install sass/sass/sass
   #npm i @ayoisaiah/f2 -g #renaming tool (https://github.com/ayoisaiah/f2) if node is installed
-  brew install --cask iterm2 ripgrep docker sublime-text visual-studio-code mactex-no-gui skim zotero #mactex #java8 #sourcetree
+  brew install iterm2 homebrew/cask/docker visual-studio-code #sublime-text no good: need st3
   # brew install virtualbox virtualbox-extension-pack qemu
+  # brew install java8
+  brew install microsoft-remote-desktop #vnc-viewer -usually macOS vnc tool works: Spotlight "vnc.//")
 
-  # OS additions
-  brew install --cask rectangle cheatsheet #itsycal -use widget in macOS Monterey #aerial -screensaver 
-  brew install --cask xquartz # Enable X11 Forwarding on macOS (ssh -Y host)
+  # Scientific
+  brew install mactex-no-gui skim zotero #mactex 
+
+  # General & Applications
+  brew install spotify google-drive cyberduck raspberry-pi-imager #dropbox discord spotmenu
+  brew install android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
+
+  # Remote meetings
+  brew install gotomeeting webex-meetings
+
+  # Privacy & Messaging
+  brew install gpg-suite protonvpn protonmail-bridge thunderbird firefox tor-browser #tunnelblick #bitwarden -better install directly
+  brew install element signal
+  brew install joplin
 
   # Findericons & Hammerspoon
   # brew install fileicon
-  # brew install --cask hammerspoon openinterminal-lite openineditor-lite
-
-  # General & Applications
-  brew install --cask spotify google-drive cyberduck raspberry-pi-imager #dropbox discord spotmenu
-  brew install --cask android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
-  brew install --cask microsoft-remote-desktop #vnc-viewer -usually macOS vnc tool works: Spotlight "vnc.//")
-  brew install openconnect # Cisco anyconnect alternative CLI client
-
-  # Privacy & Messaging
-  brew install --cask gpg-suite protonvpn protonmail-bridge thunderbird firefox tor-browser #tunnelblick #bitwarden -better install directly
-  brew install --cask element signal
-  brew install --cask joplin
-  
-  # Remote meetings
-  brew install --cask gotomeeting webex-meetings
+  # brew install hammerspoon openinterminal-lite openineditor-lite
 }
 
 install_additionals(){
   brew install khanhas/tap/spicetify-cli
-  brew install --cask ubersicht
+  brew install ubersicht
   #git clone https://github.com/zhaorz/zenbar $HOME/Library/Application\ Support/Übersicht/widgets/zenbar
   git clone git@github.com:theuema/Uebersicht_Widgets.git $HOME/Library/Application\ Support/Übersicht/widgets
 }
@@ -80,43 +83,47 @@ MacEssentials install script
 # Set up terminal workflow
 # brew install zsh zsh-completions zsh-autosuggestions
 
---- ! Essential Installations !
+--- ! Essentials Installation !
 
-# Terminal & Tools
-brew install zsh zsh-completions zsh-autosuggestions #neofetch #ghostscript
-brew install rename rsync ntfs-3g mas gotop pdfgrep yadm openssl wget exiftool rom-tools #rom-tools for creating CHDs from CD-Roms PSX emulator 
-#htop -gotop alternative #curl -to use newer curl version from brew
+   # OS additions
+  brew install rectangle cheatsheet #itsycal -use widget in macOS Monterey #aerial -screensaver 
+  brew install xquartz # Enable X11 Forwarding on macOS (ssh -Y host)
 
-# Dev
-brew install bat tree go meld #cmake #ctags #java #fzf -installed via vim to ~/.fzf
-# sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-#$(brew --prefix)/opt/fzf/install #install useful fzf key bindings and fuzzy completion for brew installed fzf
-brew install tmux git-flow perl latexdiff #node -for npm webdev or youcompleteme plugin then: brew install sass/sass/sass
-#npm i @ayoisaiah/f2 -g #renaming tool (https://github.com/ayoisaiah/f2) if node is installed
-brew install --cask iterm2 vim ripgrep sublime-text docker mactex-no-gui skim zotero #mactex #java8 #sourcetree
-# brew install virtualbox virtualbox-extension-pack qemu
+  # Terminal & Tools
+  brew install rename rsync mas pdfgrep yadm openssl wget exiftool rom-tools gotop #ntfs-3g #ghostscript #rom-tools for creating CHDs from CD-Roms PSX emulator 
+  #brew install neofetch htop curl
+  brew install openconnect # Cisco anyconnect alternative CLI VPN client
 
-# OS additions
-brew install --cask rectangle cheatsheet #itsycal -use widget in macOS Monterey #aerial -screensaver 
-brew install --cask xquartz # Enable X11 Forwarding on macOS (ssh -Y host)
+  # Dev
+  brew install bat tree go meld ripgrep vim #cmake #ctags #java #fzf -installed via vim to ~/.fzf
+  brew install macfuse
+  brew install gromgit/fuse/sshfs-mac #brew install sshfs replacement due to macfuse not being open source anymore; see https://docs.brew.sh/Interesting-Taps-and-Forks  
+  # sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+  brew install tmux git-flow perl latexdiff #sourcetree #node -for npm webdev or youcompleteme plugin then: brew install sass/sass/sass
+  #npm i @ayoisaiah/f2 -g #renaming tool (https://github.com/ayoisaiah/f2) if node is installed
+  brew install iterm2 homebrew/cask/docker visual-studio-code #sublime-text no good: need st3
+  # brew install virtualbox virtualbox-extension-pack qemu
+  # brew install java8
+  brew install microsoft-remote-desktop #vnc-viewer -usually macOS vnc tool works: Spotlight "vnc.//")
 
-# Findericons & Hammerspoon
-# brew install fileicon
-# brew install --cask hammerspoon openinterminal-lite openineditor-lite
+  # Scientific
+  brew install mactex-no-gui skim zotero #mactex 
 
-# General & Applications
-brew install --cask spotify google-drive cyberduck raspberry-pi-imager #dropbox discord spotmenu
-brew install --cask osxfuse android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
-brew install --cask microsoft-remote-desktop #vnc-viewer -usually macOS vnc tool works: Spotlight "vnc.//")
-brew install openconnect # Cisco anyconnect alternative CLI client
+  # General & Applications
+  brew install spotify google-drive cyberduck raspberry-pi-imager #dropbox discord spotmenu
+  brew install android-file-transfer android-platform-tools steam calibre vlc #eqmac -bug in catalina https://github.com/nodeful/eqMac2/issues/172
 
-# Privacy & Messaging
-brew install --cask gpg-suite protonvpn protonmail-bridge thunderbird firefox tor-browser #tunnelblick #bitwarden -better install directly
-brew install --cask element signal
-brew install --cask joplin
+  # Remote meetings
+  brew install gotomeeting webex-meetings
 
-# Remote meetings
-brew install --cask gotomeeting webex-meetings
+  # Privacy & Messaging
+  brew install gpg-suite protonvpn protonmail-bridge thunderbird firefox tor-browser #tunnelblick #bitwarden -better install directly
+  brew install element signal
+  brew install joplin
+
+  # Findericons & Hammerspoon
+  # brew install fileicon
+  # brew install hammerspoon openinterminal-lite openineditor-lite
 "
 
 answer=""
